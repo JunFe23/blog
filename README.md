@@ -34,3 +34,11 @@ Q. state 쓰는 이유?
 - state는 변경되면 html이 자동 재렌더링됨.
 
 자주 변경될 거 같은 html 부분은 state로 만들어놓기.
+
+
+/* eslint-disable */
+- Lint 끄는 기능.
+
+state 변경하는 법
+- 등호로 변경 금지.
+- state변경함수(새로운state)
