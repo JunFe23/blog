@@ -42,3 +42,16 @@ Q. state 쓰는 이유?
 state 변경하는 법
 - 등호로 변경 금지.
 - state변경함수(새로운state)
+
+array/object 다룰 때, 원본은 보존하는게 좋음.
+
+[state 변경함수 특징]
+- 기존state==신규state의 경우 변경 안 해줌.
+
+[array/object 특징]
+- array/object 담은 변수엔 화살표만 저장됨.
+- 변수1&변수2 화살표가 같으면 변수1==변수2 비교해도 true 나옴.
+- array, object는 reference data type이라서 그럼.
+
+정리
+- state가 array/object이면 shallow copy를 만들어서 수정해야 함.
