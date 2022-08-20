@@ -27,9 +27,8 @@ function App() {
 
       <button onClick={()=>{
         
-        let copy2 = [...글제목];
-        copy[0] = '';
-        글순서변경(copy2);
+        let copy2 = [...글제목].sort();
+        글제목변경(copy2);
 
       }}>가나다순정렬</button>
 
