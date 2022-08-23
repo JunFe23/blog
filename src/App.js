@@ -55,9 +55,9 @@ function App() {
           return (
             <div className="list" key={i}>
               <h4 onClick={()=>{ 
-                따봉[i] = 따봉[i] + 1
-                console.log(따봉[i])
-                따봉변경(따봉[i]) 
+                let repl = [...따봉];
+                repl[i] = repl[i] + 1
+                따봉변경(repl) 
                 }}>{ 글제목[i] }👌 {따봉[i]}</h4>
               <p>2월 17일 발행</p>
             </div>
