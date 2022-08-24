@@ -54,11 +54,12 @@ function App() {
         글제목.map(function(a, i){
           return (
             <div className="list" key={i}>
-              <h4 onClick={()=>{ 
+              <h4 onClick={()=>{ setModal(!modal) }}>{ 글제목[i] } 
+                <span onClick={()=>{ 
                 let repl = [...따봉];
                 repl[i] = repl[i] + 1
                 따봉변경(repl) 
-                }}>{ 글제목[i] }👌 {따봉[i]}</h4>
+                }}>👌</span> {따봉[i]}</h4>
               <p>2월 17일 발행</p>
             </div>
           )
@@ -66,20 +67,20 @@ function App() {
       }
 
       {
-        modal == true ? <Modal/> : null
+        modal == true ? <Modal color={'skyblue'} 글제목={글제목} /> : null
       }
 
     </div>
   );
 }
 
-
-function Modal(){
+function Modal(props,i){
   return(
-      <div className='modal'>
-        <h4>제목</h4>
+      <div className='modal' style={{background: props.color}}>
+        <h4>{props.글제목[0]}</h4>
         <p>날짜</p>
         <p>상세내용</p>
+        <button>글수정</button>
       </div>
   )
 }
