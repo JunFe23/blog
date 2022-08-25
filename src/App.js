@@ -2,7 +2,7 @@
 
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function App() {
 
@@ -11,6 +11,8 @@ function App() {
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
+  let [입력값, 입력값변경] = useState('');
+  let [date, setDate] = useState(['2014-08-18', '2016-08-17', '1994-04-19']);
 
   return (
     <div className="App">
@@ -52,21 +54,54 @@ function App() {
           return (
             <div className="list" key={i}>
               <h4 onClick={()=>{ setModal(!modal); setTitle(i)}}>{ 글제목[i] } 
-                <span onClick={()=>{ 
+                <span onClick={(e)=>{ e.stopPropagation();
                 let repl = [...따봉];
                 repl[i] = repl[i] + 1
                 따봉변경(repl) 
                 }}>👌</span> {따봉[i]}</h4>
-              <p>2월 17일 발행</p>
+              <p>{date[i]}</p>
+              <button onClick={()=>{
+                let del = [...글제목];
+                del.splice(i,1);
+                글제목변경(del);
+              }}>게시글 삭제</button>
             </div>
           )
         })
       }
 
-      {
-        modal == true ? <Modal color={'skyblue'} 글제목={글제목} 글제목변경={글제목변경} title={title} /> : null
-      }
+      <input onChange={(e)=>{ 
+        입력값변경(e.target.value)
+      }} />
+      <button onClick={()=>{
+        let check = 입력값;
+        if(check != null && check != ''){
+          const nowDate = new Date();
+          var year = nowDate.getFullYear();
+          var month = ('0' + (nowDate.getMonth() + 1)).slice(-2);
+          var day = ('0' + nowDate.getDate()).slice(-2);
+          var todate = year + '-' + month + '-' + day;
 
+          let 추가글제목 = [...글제목];
+          let 추가따봉 = [...따봉];
+          let addDate = [...date];
+          추가글제목.unshift(입력값);
+          추가따봉.unshift(0);
+          addDate.unshift(todate);
+          글제목변경(추가글제목);
+          따봉변경(추가따봉);
+          setDate(addDate);
+        } else {
+          alert('공백을 입력할 수 없습니다. 글을 작성해주세요.')
+        }
+        
+      }}>글발행</button>
+
+
+      {
+        modal == true ? <Modal color={'skyblue'} 글제목={글제목} 글제목변경={글제목변경} title={title} date={date} /> : null
+      }
+<Modal2></Modal2>
     </div>
   );
 }
@@ -75,11 +110,31 @@ function Modal(props){
   return(
       <div className='modal' style={{background: props.color}} >
         <h4>{props.글제목[props.title]}</h4>
-        <p>날짜</p>
+        <p>{props.date}</p>
         <p>상세내용</p>
         <button>글수정</button>
       </div>
   )
+}
+
+// class로도 컴포넌트를 만들 수 있다.
+class Modal2 extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      name : 'kim',
+      age : 20
+    }
+  }
+  render(){
+    return (
+      <div>안녕 {this.state.age}
+        <button onClick={()=>{
+          this.setState({age : 21})
+        }}>버튼</button>
+      </div>
+    )
+  }
 }
 
 export default App;

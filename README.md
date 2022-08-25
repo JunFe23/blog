@@ -113,3 +113,29 @@ props
 
 <20220824>
 props를 응용하여 상세페이지 만들기
+
+(중요)
+state 만드는 곳은 state 사용하는 컴포넌트들 중 최상위 컴포넌트
+
+<input> 태그
+- text, range, checkbox 등 다양한 것 많음.
+<input>에 뭔가 입력 시 코드실행하고 싶으면 onChange / onInput
+
+이벤트버블링
+- 클릭이벤트는 상위html로 퍼짐
+- 막고 싶으면 e.stopPropagation()
+
+(정보)
+state 변경함수는 늦게 처리 됨.
+
+(숙제)
+1. 새 글 등록
+2. 글 삭제
+
+array 추가 / 삭제
+- unshift : 맨 앞 array 추가.
+- splice : array 제거.
+
+
+<20220825>
+class로도 component 만들 수 있음.
